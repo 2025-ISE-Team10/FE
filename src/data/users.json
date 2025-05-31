@@ -4,34 +4,39 @@
         "name": "Alice",
         "email": "alice@example.com",
         "password": "alice1234",
-        "address": "123 Maple St, Seoul"
+        "address": "123 Maple St, Seoul",
+        "cart": [101, 102, 103]
     },
     {
         "id": 2,
         "name": "Bob",
         "email": "bob@example.com",
         "password": "bob5678",
-        "address": "456 Oak Ave, Busan"
+        "address": "456 Oak Ave, Busan",
+        "cart": [104, 105]
     },
     {
         "id": 3,
         "name": "Charlie",
         "email": "charlie@example.com",
         "password": "charlie910",
-        "address": "789 Pine Rd, Incheon"
+        "address": "789 Pine Rd, Incheon",
+        "cart": [106]
     },
     {
         "id": 4,
         "name": "Diana",
         "email": "diana@example.com",
         "password": "diana1122",
-        "address": "101 Cherry Blvd, Daegu"
+        "address": "101 Cherry Blvd, Daegu",
+        "cart": [107, 108, 109, 110]
     },
     {
         "id": 5,
         "name": "Evan",
         "email": "evan@example.com",
         "password": "evan3344",
-        "address": "202 Willow Ln, Daejeon"
+        "address": "202 Willow Ln, Daejeon",
+        "cart": []
     }
 ]
