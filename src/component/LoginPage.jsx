@@ -3,7 +3,7 @@ import users from "../data/users"; // 사용자 데이터 임포트
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-export default function LoginInterface({setUserId, setIsLoggedIn}) {
+export default function LoginInterface({ setUserId, setIsLoggedIn }) {
   // react-router-dom의 useNavigate 훅 사용
   const navigate = useNavigate();
   // 로그인 상태를 관리하기 위한 상태 변수들
@@ -20,8 +20,7 @@ export default function LoginInterface({setUserId, setIsLoggedIn}) {
   }); // 로컬 스토리지에서 가져온 사용자 데이터를 저장할 상태 변수
 
   // 비밀번호 입력 필드에 대한 참조를 생성합니다.
-  const passwordRef = useRef(null); 
-
+  const passwordRef = useRef(null);
 
   // 로그인 핸들러 함수
   const handleLogin = (e) => {
@@ -42,12 +41,14 @@ export default function LoginInterface({setUserId, setIsLoggedIn}) {
       setPassword(""); // 입력값 초기화
 
       toast.success(`로그인 성공! 어서오세요, ${user.name}님!`); // 성공 메시지 표시
-      navigate("/"); // 홈으로 이동 (페이지 리로드 없이)
+      navigate("/search"); // 검색으로 이동 (페이지 리로드 없이)
     } else {
       // 로그인 실패 시 에러 메시지를 설정합니다.
       toast.error("이메일 또는 비밀번호가 올바르지 않습니다."); // 에러 메시지 표시
-      setTimeout(() => {setError('')}, 1500); // 1.5초 후 에러 메시지 초기화
-      
+      setTimeout(() => {
+        setError("");
+      }, 1500); // 1.5초 후 에러 메시지 초기화
+
       setPassword(""); // 입력값 초기화
       passwordRef.current.focus(); // 비밀번호 입력 필드에 포커스 설정
     }
@@ -58,20 +59,30 @@ export default function LoginInterface({setUserId, setIsLoggedIn}) {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       {/* 홈으로 이동 버튼 */}
       <button
-          onClick={() => (navigate("/"))}
-          className="absolute left-4 top-4 text-gray-500 hover:text-gray-700"
-          aria-label="홈으로 이동"
+        onClick={() => navigate("/")}
+        className="absolute left-4 top-4 text-gray-500 hover:text-gray-700"
+        aria-label="홈으로 이동"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="size-12 text-gray-500 hover:text-gray-700"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-12 text-gray-500 hover:text-gray-700">
-            <path fillRule="evenodd" d="M11.03 3.97a.75.75 0 0 1 0 1.06l-6.22 6.22H21a.75.75 0 0 1 0 1.5H4.81l6.22 6.22a.75.75 0 1 1-1.06 1.06l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 0 1 1.06 0Z" clipRule="evenodd" />
-          </svg>
+          <path
+            fillRule="evenodd"
+            d="M11.03 3.97a.75.75 0 0 1 0 1.06l-6.22 6.22H21a.75.75 0 0 1 0 1.5H4.81l6.22 6.22a.75.75 0 1 1-1.06 1.06l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 0 1 1.06 0Z"
+            clipRule="evenodd"
+          />
+        </svg>
       </button>
       {/* 로그인 폼 컨테이너 */}
       <div className="w-full max-w-sm bg-white rounded-2xl shadow-lg p-6 relative">
         {/* 로그인 폼 제목 */}
         <h2 className="text-2xl font-semibold text-center mb-6">로그인</h2>
         <p className="text-sm text-center text-gray-500 mb-4">
-          Geup에 오신 것을 환영합니다! <br/>계정을 입력하여 로그인하세요.
+          Geup에 오신 것을 환영합니다! <br />
+          계정을 입력하여 로그인하세요.
         </p>
         {/* 로그인 폼 */}
         <form onSubmit={handleLogin} className="space-y-4">
@@ -107,12 +118,15 @@ export default function LoginInterface({setUserId, setIsLoggedIn}) {
         </form>
         {/* 비밀번호 찾기 및 회원가입 링크 */}
         <div className="mt-4 text-center">
-          <Link to="/forgot-password" className="text-sm text-blue-500 hover:underline">
+          <Link
+            to="/forgot-password"
+            className="text-sm text-blue-500 hover:underline"
+          >
             비밀번호 찾기
           </Link>
         </div>
         <div className="mt-2 text-center text-sm">
-          계정이 없으신가요?{' '}
+          계정이 없으신가요?{" "}
           <Link to="/signup" className="text-blue-500 hover:underline">
             회원가입
           </Link>
