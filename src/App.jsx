@@ -1,8 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import LoginPage from "./component/LoginPage"
 import StartingInterface from "./component/StartingInterface"
-import { use, useContext, useState } from "react"
+import { useState } from "react"
 import { ToastContainer } from "react-toastify";
+import SignUpPage from "./component/SignUpPage";
+import ForgotPasswordPage from "./component/ForgotPasswordPage";
 
 function App() {
   // App 컴포넌트는 전체 애플리케이션의 루트 컴포넌트입니다.
@@ -19,6 +21,8 @@ function App() {
             <Route path="/" element={<StartingInterface userId={userId} setUserId={setUserId} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>} />
             <Route path="/login" element={<LoginPage setUserId={setUserId} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>} />
             {/* 다른 페이지 라우트 추가 가능 */}
+            <Route path="/signup" element={<SignUpPage/>} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage/>} />
           </Routes>
       </BrowserRouter>
         <footer className="mt-auto px-4 py-6 text-sm text-center text-gray-500 bg-white border-t">
