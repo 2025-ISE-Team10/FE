@@ -1,20 +1,14 @@
 import { Link } from "react-router-dom";
 import { blueButtonStyle } from "./StartingInterface";
 import { toast } from "react-toastify";
-import { useEffect } from "react";
-
+import { useState } from "react";
+// 헤더 컴포넌트는 상단에 위치하며, 로고, 검색창, 로그인/로그아웃 버튼 등을 포함합니다.
 export default function Header({ userId, setUserId, isLoggedIn, setIsLoggedIn }) {
-    useEffect(() => {
-    // 페이지가 로드될 때 로컬 스토리지에서 사용자 데이터를 가져옵니다.
-    let storedUsers = localStorage.getItem("users");
-    if (storedUsers) {
-        // 로컬 스토리지에 사용자 데이터가 있다면 JSON 파싱하여 users 배열에 저장합니다. 
-        storedUsers = JSON.parse(storedUsers);
-    }
-    else {
-        storedUsers = users; // 초기 사용자 데이터로 설정
-    }
-    }, []);
+    // 사용자 ID와 로그인 상태를 props로 받아옵니다.
+    const [storedUsers, setStoredUsers] = useState(() => {
+        const local = localStorage.getItem("users");
+        return local ? JSON.parse(local) : users;
+    }); 
     
     const handleLogout = () => {
         // 로그아웃 핸들러 함수
@@ -38,10 +32,10 @@ export default function Header({ userId, setUserId, isLoggedIn, setIsLoggedIn })
                 <button type="button" className={blueButtonStyle}>검색</button>
             </form>
             <div className="flex items-center space-x-4">
-
                 {/* 로그인 버튼 (이미 로그인되어 있는 경우 로그아웃 버튼) */}
                 {(isLoggedIn) ? 
                 ([
+                <div key="userId" className="text-sm font-semibold">{storedUsers[userId-1].name}님, 안녕하세요!</div>,
                 <Link to={`/mypage`} className={blueButtonStyle}>마이페이지</Link>,
                 <Link to={`/cart`} className={blueButtonStyle}>장바구니</Link>,
                 <button onClick={handleLogout}className={blueButtonStyle}>로그아웃</button>,
