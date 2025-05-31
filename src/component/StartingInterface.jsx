@@ -15,7 +15,7 @@ export default function StartingInterface({userId, setUserId, isLoggedIn, setIsL
     // 빈 아이템 개수 계산 (항상 5개 div를 만들기 위함)
     const emptyCount = itemsPerPage - currentProducts.length;
 
-    // 패션, 전자, 식품, 뷰티 카테고리 아이콘을 위한 SVG 아이콘
+    // 카테고리 아이콘
     const categoryIcons = {
         '패션': (
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-8 fill-blue-500">
@@ -43,10 +43,50 @@ export default function StartingInterface({userId, setUserId, isLoggedIn, setIsL
             <path d="M13.06 15.473a48.45 48.45 0 0 1 7.666-3.282c.134 1.414.22 2.843.255 4.284a.75.75 0 0 1-.46.711 47.87 47.87 0 0 0-8.105 4.342.75.75 0 0 1-.832 0 47.87 47.87 0 0 0-8.104-4.342.75.75 0 0 1-.461-.71c.035-1.442.121-2.87.255-4.286.921.304 1.83.634 2.726.99v1.27a1.5 1.5 0 0 0-.14 2.508c-.09.38-.222.753-.397 1.11.452.213.901.434 1.346.66a6.727 6.727 0 0 0 .551-1.607 1.5 1.5 0 0 0 .14-2.67v-.645a48.549 48.549 0 0 1 3.44 1.667 2.25 2.25 0 0 0 2.12 0Z" />
             <path d="M4.462 19.462c.42-.419.753-.89 1-1.395.453.214.902.435 1.347.662a6.742 6.742 0 0 1-1.286 1.794.75.75 0 0 1-1.06-1.06Z" />
             </svg>
-
         )
-        };
+    };
 
+    // 배너 텍스트와 배경색
+    const banners = [
+        { 
+            title: "🔥 당신의 시간은 소중하니까요 🔥", 
+            text: "빠른 배송, 간편 결제! 시간을 아껴주는 스마트 쇼핑을 경험하세요.", 
+            bg: "bg-gradient-to-r from-yellow-300 via-orange-400 to-yellow-200" 
+        },
+        { 
+            title: "🛒 필요한 물건만 딱 간편하게 🛒", 
+            text: "카테고리별 인기 상품을 한눈에! 원하는 것만 골라 쉽고 빠르게 쇼핑하세요.", 
+            bg: "bg-gradient-to-r from-green-200 via-blue-100 to-green-100" 
+        },
+        { 
+            title: "🚚 무료 배송 이벤트 진행중! 🎉", 
+            text: "지금 주문하면 전 상품 무료 배송! 배송비 걱정 없이 쇼핑을 즐기세요.", 
+            bg: "bg-gradient-to-r from-blue-300 via-cyan-200 to-blue-100" 
+        }
+    ];
+    const [bannerIdx, setBannerIdx] = React.useState(0);
+    const [progress, setProgress] = React.useState(0);
+    const [fade, setFade] = React.useState(false);
+    const progressDuration = 6000; // 6초
+
+    React.useEffect(() => {
+        setProgress(0);
+        setFade(false);
+        const start = Date.now();
+        const interval = setInterval(() => {
+            const elapsed = Date.now() - start;
+            const percent = Math.min((elapsed / progressDuration) * 100, 100);
+            setProgress(percent);
+            if (percent >= 100) {
+                clearInterval(interval);
+                setFade(true);
+                setTimeout(() => {
+                    setBannerIdx((prev) => (prev + 1) % banners.length);
+                }, 400); // fade-out 후 배너 변경
+            }
+        }, 30);
+        return () => clearInterval(interval);
+    }, [bannerIdx]);
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-50 text-gray-800">
@@ -54,13 +94,32 @@ export default function StartingInterface({userId, setUserId, isLoggedIn, setIsL
         <Header userId={userId} setUserId={setUserId} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
         {/* 중단: 프로모션 배너 및 상품 아이콘 */}
-        <section className="px-4 py-4 space-y-4">
-            {/* 프로모션 배너 */}
-            <div className="w-full h-40 bg-blue-200 rounded-2xl flex items-center justify-center text-xl font-bold">
-            🔥 여름 맞이 특가 이벤트 🔥
-            </div>
-
-            {/* 카테고리 아이콘들 */}
+            <section className="w-full px-4 py-4 space-y-4 ">
+                <div>
+                {/* 프로모션 배너 */}
+                <div
+                    className={`w-full h-40 rounded-2xl flex flex-col items-center justify-center transition-all duration-400 ${banners[bannerIdx].bg} ${fade ? "opacity-0" : "opacity-100"}`}
+                    style={{ transition: "opacity 0.4s" }}
+                >
+                    <div className="flex-1 flex flex-col items-center justify-center w-full">
+                    <div className="text-xl font-bold text-center text-gray-800">
+                        {banners[bannerIdx].title}
+                    </div>
+                    <div className="flex justify-center mt-2">
+                        {banners[bannerIdx].text}
+                    </div>
+                    </div>
+                    {/* 배너 아래 진행률 표시줄 */}
+                    <div className="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
+                    <div
+                        className="bg-blue-600 h-1.5 rounded-full dark:bg-blue-500 transition-all duration-100"
+                        style={{ width: `${progress}%` }}
+                    ></div>
+                    </div>
+                </div>
+                </div>
+                
+                {/* 카테고리 아이콘들 */}
             <div className="grid grid-cols-5 gap-4 text-center mx-40">
                 {Object.entries(categoryIcons).map(([cat, svg]) => (
                     <div key={cat} className="p-2">
