@@ -7,7 +7,7 @@ export default function Header({ userId, setUserId, isLoggedIn, setIsLoggedIn })
     // 사용자 ID와 로그인 상태를 props로 받아옵니다.
     const [storedUsers, setStoredUsers] = useState(() => {
         const local = localStorage.getItem("users");
-        return local ? JSON.parse(local) : users;
+        return local ? JSON.parse(local) : [];
     }); 
     
     const handleLogout = () => {
