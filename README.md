@@ -31,3 +31,8 @@ Frontend of ISE Final Project - Team 10
 
 사용 컴포넌트:
 - FE\src\component\StartingInterface.jsx
+
+## 참고 사이트
+- tailwindcss [https://tailwindcss.com/]
+- 무료 svg [https://heroicons.com/outline]
+- 템플릿 [https://flowbite.com/]
