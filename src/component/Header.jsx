@@ -1,8 +1,20 @@
 import { Link } from "react-router-dom";
 import { blueButtonStyle } from "./StartingInterface";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 export default function Header({ userId, setUserId, isLoggedIn, setIsLoggedIn }) {
+    useEffect(() => {
+    // 페이지가 로드될 때 로컬 스토리지에서 사용자 데이터를 가져옵니다.
+    let storedUsers = localStorage.getItem("users");
+    if (storedUsers) {
+        // 로컬 스토리지에 사용자 데이터가 있다면 JSON 파싱하여 users 배열에 저장합니다. 
+        storedUsers = JSON.parse(storedUsers);
+    }
+    else {
+        storedUsers = users; // 초기 사용자 데이터로 설정
+    }
+    }, []);
     
     const handleLogout = () => {
         // 로그아웃 핸들러 함수

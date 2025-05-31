@@ -1,9 +1,11 @@
-import { use, useContext, useRef, useState } from "react";
+import { use, useContext, useEffect, useRef, useState } from "react";
 import users from "../data/users"; // 사용자 데이터 임포트
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function LoginInterface({setUserId, setIsLoggedIn}) {
+  // react-router-dom의 useNavigate 훅 사용
+  const navigate = useNavigate();
   // 로그인 상태를 관리하기 위한 상태 변수들
   // 이메일, 비밀번호, 에러 메시지, 로딩 상태를 관리합니다.
   // 사용자 ID는 현재 로그인한 사용자의 ID를 나타냅니다.
@@ -12,10 +14,14 @@ export default function LoginInterface({setUserId, setIsLoggedIn}) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  
-  const passwordRef = useRef(null); // 비밀번호 입력 필드에 대한 참조
-  // react-router-dom의 useNavigate 훅 사용
-  const navigate = useNavigate();
+  const [storedUsers, setStoredUsers] = useState(() => {
+    const local = localStorage.getItem("users");
+    return local ? JSON.parse(local) : users;
+  }); // 로컬 스토리지에서 가져온 사용자 데이터를 저장할 상태 변수
+
+  // 비밀번호 입력 필드에 대한 참조를 생성합니다.
+  const passwordRef = useRef(null); 
+
 
   // 로그인 핸들러 함수
   const handleLogin = (e) => {
@@ -24,7 +30,7 @@ export default function LoginInterface({setUserId, setIsLoggedIn}) {
     setError(""); // 에러 메시지 초기화
 
     // 사용자 데이터에서 이메일과 비밀번호를 확인합니다.
-    const user = users.find(
+    const user = storedUsers.find(
       (user) => user.email === email && user.password === password
     );
 
@@ -52,14 +58,14 @@ export default function LoginInterface({setUserId, setIsLoggedIn}) {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       {/* 홈으로 이동 버튼 */}
       <button
-          onClick={() => (window.location.href = "/")}
+          onClick={() => (navigate("/"))}
           className="absolute left-4 top-4 text-gray-500 hover:text-gray-700"
           aria-label="홈으로 이동"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-12 text-gray-500 hover:text-gray-700">
             <path fillRule="evenodd" d="M11.03 3.97a.75.75 0 0 1 0 1.06l-6.22 6.22H21a.75.75 0 0 1 0 1.5H4.81l6.22 6.22a.75.75 0 1 1-1.06 1.06l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 0 1 1.06 0Z" clipRule="evenodd" />
           </svg>
-        </button>
+      </button>
       {/* 로그인 폼 컨테이너 */}
       <div className="w-full max-w-sm bg-white rounded-2xl shadow-lg p-6 relative">
         {/* 로그인 폼 제목 */}
@@ -101,15 +107,15 @@ export default function LoginInterface({setUserId, setIsLoggedIn}) {
         </form>
         {/* 비밀번호 찾기 및 회원가입 링크 */}
         <div className="mt-4 text-center">
-          <a href="/forgot-password" className="text-sm text-blue-500 hover:underline">
+          <Link to="/forgot-password" className="text-sm text-blue-500 hover:underline">
             비밀번호 찾기
-          </a>
+          </Link>
         </div>
         <div className="mt-2 text-center text-sm">
           계정이 없으신가요?{' '}
-          <a href="/signup" className="text-blue-500 hover:underline">
+          <Link to="/signup" className="text-blue-500 hover:underline">
             회원가입
-          </a>
+          </Link>
         </div>
       </div>
     </div>
