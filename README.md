@@ -12,10 +12,11 @@ Frontend of ISE Final Project - Team 10
 - password : string
 - address : string
 - cart : Array<number>        
+
 사용 컴포넌트:
-- 
--
--
+- FE\src\component\LoginPage.jsx
+- FE\src\component\SignUpPage.jsx
+- FE\src\component\ForgotPasswordPage.jsx
 
 ### products.json
 경로 : FE\src\data\products.json
@@ -27,5 +28,6 @@ Frontend of ISE Final Project - Team 10
 - description : string
 - image : string (이미지 주소)
 - onSale : boolean (판매중이라면 true)
+
 사용 컴포넌트:
 - FE\src\component\StartingInterface.jsx
