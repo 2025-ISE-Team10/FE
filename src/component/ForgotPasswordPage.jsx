@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import users from "../data/users.json"; // 사용자 데이터 가져오기
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  // 로컬 스토리지에서 가져온 사용자 데이터를 저장할 상태 변수
   const [storedUsers, setStoredUsers] = useState(() => {
     const local = localStorage.getItem("users");
-    return local ? JSON.parse(local) : [];
-  }); // 로컬 스토리지에서 가져온 사용자 데이터를 저장할 상태 변수
-    // react-router-dom의 useNavigate 훅 사용
+    return local ? JSON.parse(local) : users;
+  }); 
+    // react-router-dom의 useNavigate 훅 사용   
   const navigate = useNavigate();
 
   const handleFindPassword = (e) => {
