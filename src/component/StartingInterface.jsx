@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import products from "../data/products.json"; // 상품 데이터 가져오기
+import { Link, Route } from "react-router-dom";
+import Header from "./Header";
 
-export default function StartingInterface() {
+export const blueButtonStyle = "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2";
 
+export default function StartingInterface({userId, setUserId, isLoggedIn, setIsLoggedIn}) {
     // 페이지 정보
     const [page, setPage] = React.useState(1);
     // 페이지당 상품 수
     const itemsPerPage = 5;
-
-    // 이미지 경로와 스타일 정의
-    const imagePath = "/images/";
-    const blueButtonStyle = "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2";
 
     // 현재 페이지에 표시할 상품 목록
     const currentProducts = products.slice((page - 1) * itemsPerPage, page * itemsPerPage);
@@ -40,24 +39,12 @@ export default function StartingInterface() {
             </svg>
             )
         };
+
+
     return (
         <div className="min-h-screen flex flex-col bg-gray-50 text-gray-800">
         {/* 상단: 검색창 및 로그인 아이콘 */}
-        <header className="w-full px-4 py-3 flex items-center justify-between shadow-sm bg-white sticky top-0 z-10">
-            <div className="flex items-center space-x-2">
-                <img src={`/logo.png`} alt="Geup Logo" className="w-10 h-10 rounded-full" />
-                <h1 className="text-lg font-bold ">Geup</h1>
-            </div>
-            <form className="flex justify-center flex-2">
-                <input
-                    type="text"
-                    placeholder="상품 검색"
-                    className="flex-1 mx-4 p-2 border border-gray-300 rounded-xl max-w-md"
-                />
-                <button type="button" className={blueButtonStyle}>검색</button>
-            </form>
-            <button className={blueButtonStyle}>로그인</button>
-        </header>
+        <Header userId={userId} setUserId={setUserId} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
         {/* 중단: 프로모션 배너 및 상품 아이콘 */}
         <section className="px-4 py-4 space-y-4">
