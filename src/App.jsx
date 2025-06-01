@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LoginPage from "./component/LoginPage";
-import StartingInterface from "./component/StartingInterface";
+import LoginPage from "./components/LoginPage";
+import StartingInterface from "./components/StartingInterface";
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
-import SignUpPage from "./component/SignUpPage";
-import ForgotPasswordPage from "./component/ForgotPasswordPage";
-import MyPage from "./component/MyPage";
-import SearchPage from "./component/SearchPage";
-import ProductDetail from "./component/ProductDetail";
-import CartPage from "./component/CartPage";
+import SignUpPage from "./components/SignUpPage";
+import ForgotPasswordPage from "./components/ForgotPasswordPage";
+import MyPage from "./components/MyPage";
+import SearchPage from "./components/SearchPage";
+import ProductDetail from "./components/ProductDetail";
+import CartPage from "./components/CartPage";
 
 function App() {
   // App 컴포넌트는 전체 애플리케이션의 루트 컴포넌트입니다.
