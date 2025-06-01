@@ -37,42 +37,39 @@ const ProductDetail = () => {
   };
 
   if (!product) {
-    return <div style={{ padding: "2rem" }}>❌ 상품을 찾을 수 없습니다.</div>;
+    return (
+      <div className="p-8 text-red-500 text-lg font-semibold">
+        ❌ 상품을 찾을 수 없습니다.
+      </div>
+    );
   }
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2>{product.title}</h2>
-      <img
-        src={product.image}
-        alt={product.title}
-        style={{
-          width: "200px",
-          height: "200px",
-          objectFit: "cover",
-          borderRadius: "8px",
-        }}
-      />
-      <p style={{ marginTop: "1rem" }}>{product.description}</p>
-      <p>
-        <strong>가격:</strong> {product.price.toLocaleString()}원
-      </p>
-      <p>상태: {product.onSale ? "🟢 판매중" : "🔴 판매종료"}</p>
-      <button
-        onClick={handleAddToCart}
-        style={{
-          marginTop: "1rem",
-          padding: "0.75rem 1.5rem",
-          fontSize: "16px",
-          backgroundColor: "#007bff",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
-      >
-        🛒 장바구니에 담기
-      </button>
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center px-4 py-8">
+      <div className="bg-white w-full max-w-2xl rounded-xl shadow-md p-6 space-y-4">
+        <h2 className="text-2xl font-bold text-gray-800">{product.title}</h2>
+        <img
+          src={product.image}
+          alt={product.title}
+          className="w-64 h-64 object-cover rounded-xl mx-auto"
+        />
+        <p className="text-gray-700">{product.description}</p>
+        <p className="text-lg font-semibold text-blue-600">
+          가격: {product.price.toLocaleString()}원
+        </p>
+        <p className="text-sm text-gray-600">
+          상태:{" "}
+          <span className={product.onSale ? "text-green-600" : "text-red-600"}>
+            {product.onSale ? "🟢 판매중" : "🔴 판매종료"}
+          </span>
+        </p>
+        <button
+          onClick={handleAddToCart}
+          className="w-full py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition"
+        >
+          🛒 장바구니에 담기
+        </button>
+      </div>
     </div>
   );
 };
