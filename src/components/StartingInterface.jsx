@@ -257,7 +257,7 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
                                 {["Drink", "Snack", "Ice Cream", "Fruit", "Grocery"].map(cat => (
                                     <button onClick={() => handleMarketFilterChange(cat)}
                                         key={cat}
-                                        className="w-full flex items-center gap-2 text-left px-3 py-2 rounded-lg my-1 text-sm hover:bg-gray-100"
+                                        className={"w-full flex items-center gap-2 text-left px-3 py-2 rounded-lg my-1 text-sm hover:bg-gray-100 " + (marketFilter === cat ? "bg-gray-200 font-semibold" : "text-gray-700")}
                                     >
                                         <span className="text-lg">
                                             {cat === "Drink" ? "🥤" : cat === "Snack" ? "🍿" : cat === "Fruit" ? "🍎": cat === "Grocery" ? "🥚"  : "🍦"}
