@@ -1,30 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // ✅ navigate 추가
+import { useParams, useNavigate } from 'react-router-dom';
 import products from '../data/products.json';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { ShoppingCart, Star, Heart } from 'lucide-react';
+import { ShoppingCart, Heart } from 'lucide-react';
 import { toast } from "react-toastify";
 import Header from "./Header";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const navigate = useNavigate(); // ✅ 추가
+  const navigate = useNavigate();
   const product = products.find((p) => p.id === parseInt(id));
 
   const [quantity, setQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
-
   const [user, setUser] = useState(null);
   const [userId, setUserId] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
+    const loginStatus = localStorage.getItem("isLoggedIn");
     if (savedUser) {
       const parsedUser = JSON.parse(savedUser);
       setUser(parsedUser);
+      setUserId(parsedUser.id);
+    }
+    if (loginStatus === "true") {
+      setIsLoggedIn(true);
     }
   }, []);
 
@@ -72,6 +76,9 @@ const ProductDetail = () => {
     return <div className="p-8 text-red-500 text-lg font-semibold">❌ 상품을 찾을 수 없습니다.</div>;
   }
 
+  const isGroupBuying = !!product.groupPurchase;
+  const finalPrice = isGroupBuying ? product.groupPurchase.discountedPrice : product.price;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100">
       <Header userId={userId} setUserId={setUserId} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
@@ -108,15 +115,28 @@ const ProductDetail = () => {
 
             <div className="space-y-3">
               <div className="flex items-baseline gap-3">
-                <span className="text-4xl font-bold text-gray-900">{formatPrice(product.price)}원</span>
-                {product.originalPrice && <span className="text-xl text-gray-500 line-through">{formatPrice(product.originalPrice)}원</span>}
+                {isGroupBuying ? (
+                  <>
+                    <span className="text-xl text-gray-500 line-through">{formatPrice(product.price)}원</span>
+                    <span className="text-4xl font-bold text-gray-900">{formatPrice(finalPrice)}원</span>
+                  </>
+                ) : (
+                  <span className="text-4xl font-bold text-gray-900">{formatPrice(finalPrice)}원</span>
+                )}
               </div>
-              {product.originalPrice && (
-                <Badge variant="destructive" className="text-sm">
-                  {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% 할인
-                </Badge>
-              )}
             </div>
+
+            {isGroupBuying && (
+              <Card className="bg-yellow-50 border-yellow-200 shadow-sm">
+                <CardContent className="p-4">
+                  <div className="flex flex-col space-y-1">
+                    <span className="text-yellow-800 font-semibold text-base">공동구매 정보 🧑‍🤝‍🧑</span>
+                    <span className="text-sm text-yellow-700">현재 참여 인원: <span className="font-bold">{product.groupPurchase.participants}명</span></span>
+                    <span className="text-sm text-yellow-700">공동구매가: <span className="font-bold text-yellow-900">{formatPrice(product.groupPurchase.discountedPrice)}원</span></span>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
 
             <Card className="bg-gray-50 border-none">
               <CardContent className="p-6">
@@ -148,7 +168,7 @@ const ProductDetail = () => {
                   <Button
                     variant="outline"
                     className="h-12 font-medium border-2 hover:bg-gray-50 transition-all duration-300"
-                    onClick={() => navigate("/FAQ")} // ✅ 이 부분만 추가됨
+                    onClick={() => navigate("/FAQ")}
                   >
                     문의하기
                   </Button>
