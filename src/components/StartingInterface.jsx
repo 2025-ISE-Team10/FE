@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import products from "../data/products.json"; // 상품 데이터 가져오기
+import PrettyNavButton from "./PrettyNavButton";
 import Header from "./Header";
 
 export const blueButtonStyle = " px-4 py-2 rounded-xl font-medium text-sm bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-indigo-500 hover:to-blue-500 text-white shadow-md transition-all duration-200 hover:scale-105 active:scale-95";
@@ -10,6 +11,13 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
     const [page, setPage] = React.useState(1);
 
     const navigate = useNavigate();
+    const [view, setView] = useState("friends"); // "friends" | "market"
+    const [bgClass, setBgClass] = useState("bg-gray-50");
+
+    useEffect(() => {
+        setBgClass(view === "friends" ? "bg-gray-50" : "bg-orange-100");
+    }, [view]);
+
     // 페이지당 상품 수
     const itemsPerPage = 5;
 
@@ -91,8 +99,12 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
         return () => clearInterval(interval);
     }, [bannerIdx]);
 
+    // Geup Market
+
+    const filteredMarket = products.filter(p => p.market === true);
+
     return (
-        <div className="min-h-screen flex flex-col bg-gray-50 text-gray-800">
+        <div className={`min-h-screen flex flex-col ${bgClass} bg-gray-50 text-gray-800 transition-colors duration-500`}>
             {/* 상단: 검색창 및 로그인 아이콘 */}
             <Header userId={userId} setUserId={setUserId} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
@@ -123,73 +135,151 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
                 </div>
 
                 {/* 카테고리 아이콘들 */}
-                <div className="grid grid-cols-5 gap-4 text-center mx-40">
-                    {Object.entries(categoryIcons).map(([cat, svg]) => (
-                        <div key={cat} className="p-2">
-                            <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-1 flex items-center justify-center">
-                                {svg}
-                            </div>
-                            <div className="text-sm font-medium">{cat}</div>
-                        </div>
-                    ))}
-                </div>
-                {currentProducts.map((product) => (
-                    <div
-                        key={product.id}
-                        className={`bg-white p-4 rounded-xl shadow-sm flex items-center space-x-4 transition ${product.onSale ? "cursor-pointer hover:bg-gray-100" : "opacity-60 cursor-not-allowed"}`}
-                        onClick={() => product.onSale && navigate(`/product/${product.id}`)}
+                {/* [급 마켓] / [급 친구] 버튼 영역 */}
+                <div className="flex justify-center gap-6 mt-6">
+                    <PrettyNavButton
+                        view="market"
+                        currentView={view}
+                        onClick={() => setView("market")}
                     >
-                        <img className="w-24 h-24 bg-gray-200 rounded-xl" src={product.image} alt={product.title} />
-                        <div className="flex-1">
-                            <div className="flex justify-between items-center mb-1">
-                                <p className="text-lg font-semibold text-blue-600">{product.price}원</p>
-                                <div className="flex gap-1">
-                                    {product.groupPurchase && (
-                                        <span className="px-2 py-0.5 text-xs rounded-md border border-red-400 text-red-600 font-medium bg-gray-100">공동구매</span>
-                                    )}
-                                    {product.onSale ? (
-                                        <span className="px-2 py-0.5 text-xs rounded-md bg-green-100 text-green-700 font-medium">판매중</span>
-                                    ) : (
-                                        <span className="px-2 py-0.5 text-xs rounded-md bg-red-100 text-red-700 font-medium">판매종료</span>
-                                    )}
+                        급 마켓
+                    </PrettyNavButton>
+                    <PrettyNavButton
+                        view="friends"
+                        currentView={view}
+                        onClick={() => setView("friends")}
+                    >
+                        급 친구
+                    </PrettyNavButton>
+                </div>
+
+                {view === "friends" ? (
+                    <>
+                        {currentProducts.map((product) => (
+                            <div
+                                key={product.id}
+                                className={`bg-white p-4 rounded-xl shadow-sm flex items-center space-x-4 transition ${product.onSale
+                                    ? "cursor-pointer hover:bg-gray-100"
+                                    : "opacity-60 cursor-not-allowed"
+                                    }`}
+                                onClick={() =>
+                                    product.onSale && navigate(`/product/${product.id}`)
+                                }
+                            >
+                                <img
+                                    className="w-24 h-24 bg-gray-200 rounded-xl object-cover"
+                                    src={product.image}
+                                    alt={product.title}
+                                />
+                                <div className="flex-1">
+                                    <div className="flex justify-between items-center mb-1">
+                                        <p className="text-lg font-semibold text-blue-600">
+                                            {product.price.toLocaleString()}원
+                                        </p>
+                                        <div className="flex gap-1">
+                                            {product.groupPurchase && (
+                                                <span className="px-2 py-0.5 text-xs rounded-md border border-red-400 text-red-600 font-medium bg-gray-100">
+                                                    공동구매
+                                                </span>
+                                            )}
+                                            {product.onSale ? (
+                                                <span className="px-2 py-0.5 text-xs rounded-md bg-green-100 text-green-700 font-medium">
+                                                    판매중
+                                                </span>
+                                            ) : (
+                                                <span className="px-2 py-0.5 text-xs rounded-md bg-red-100 text-red-700 font-medium">
+                                                    판매종료
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <h2 className="font-semibold">{product.title}</h2>
+                                    <p className="text-sm text-gray-600 truncate">
+                                        {product.description}
+                                    </p>
                                 </div>
                             </div>
-                            <h2 className="font-semibold">{product.title}</h2>
-                            <p className="text-sm text-gray-600">{product.description}</p>
+                        ))}
+
+                        {/* 빈 카드 채우기 */}
+                        {Array.from({ length: emptyCount }, (_, i) => (
+                            <div
+                                key={`empty-${i}`}
+                                className="bg-gray-50 p-4 rounded-xl flex items-center space-x-4"
+                            >
+                                <div className="w-24 h-24 bg-gray-50 rounded-xl" />
+                            </div>
+                        ))}
+
+                        {/* 페이지네이션 */}
+                        <div className="flex justify-center gap-2 mt-4">
+                            <button
+                                className={blueButtonStyle}
+                                onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+                                disabled={page === 1}
+                            >
+                                이전
+                            </button>
+                            <span className="text-sm font-medium flex items-center">
+                                {page} / {Math.ceil(products.length / itemsPerPage)}
+                            </span>
+                            <button
+                                className={blueButtonStyle}
+                                onClick={() =>
+                                    setPage((prev) =>
+                                        prev * itemsPerPage < products.length ? prev + 1 : prev
+                                    )
+                                }
+                                disabled={page * itemsPerPage >= products.length}
+                            >
+                                다음
+                            </button>
                         </div>
-                    </div>
-                ))}
+                    </>
+                ) : (
+                    <>
+                        <div className="mt-10 flex">
+                            {/* 사이드 메뉴 */}
+                            <aside className="w-36 md:w-48 shrink-0 bg-white/40 backdrop-blur-sm border-r border-white/60
+          rounded-xl p-4 mr-6 h-fit sticky top-24">
+                                {["Drinks", "Snacks", "Candy", "Ice Cream"].map(cat => (
+                                    <button
+                                        key={cat}
+                                        className="w-full flex items-center gap-2 text-left px-3 py-2 rounded-lg my-1 text-sm hover:bg-gray-100"
+                                    >
+                                        <span className="text-lg">
+                                            {cat === "Drinks" ? "🥤" : cat === "Snacks" ? "🍿" : cat === "Candy" ? "🍭" : "🍦"}
+                                        </span>
+                                        <span className="truncate">{cat}</span>
+                                    </button>
+                                ))}
+                            </aside>
 
-                {Array.from({ length: emptyCount }, (_, i) => (
-                    <div key={`empty-${i}`} className="bg-gray-50 p-4 rounded-xl flex items-center space-x-4">
-                        <div className="w-24 h-24 bg-gray-50 rounded-xl"></div>
-                    </div>
-                ))}
-
-                <div className="flex justify-center space-x-2 mt-4">
-                    <button
-                        className={blueButtonStyle}
-                        onClick={() => setPage((prev) => Math.max(1, prev - 1))}
-                        disabled={page === 1}
-                    >
-                        이전 page
-                    </button>
-                    <span className="flex items-center justify-center text-sm font-medium">
-                        {page} / {Math.ceil(products.length / itemsPerPage)}
-                    </span>
-                    <button
-                        className={blueButtonStyle}
-                        onClick={() =>
-                            setPage((prev) =>
-                                prev * itemsPerPage < products.length ? prev + 1 : prev
-                            )
-                        }
-                        disabled={page * itemsPerPage >= products.length}
-                    >
-                        다음 page
-                    </button>
-                </div>
-            </section>
-        </div>
+                            {/* 상품 그리드 */}
+                            <main className="flex-1">
+                                <div className="grid gap-y-10 gap-x-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                                    {filteredMarket.map(p => (
+                                        <div
+                                            key={p.id}
+                                            className="w-full border border-gray-300 rounded-xl p-4 cursor-pointer hover:shadow-md transition-shadow duration-200"
+                                            onClick={() => navigate(`/product/${p.id}`)}
+                                        >
+                                            <img
+                                                src={p.image}
+                                                alt={p.title}
+                                                className="w-full h-28 object-contain mb-2 select-none pointer-events-none"
+                                            />
+                                            <p className="font-bold text-lg">₩{p.price.toLocaleString()}</p>
+                                            <h3 className="text-sm font-semibold leading-snug truncate">{p.title}</h3>
+                                            <p className="text-xs text-gray-500 truncate">{p.description}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </main>
+                        </div>
+                    </>
+                )}
+            </section >
+        </div >
     );
 }
