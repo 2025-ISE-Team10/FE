@@ -144,7 +144,8 @@
         "description": "사이다 250ml 팝니다. 탄산 좋아하시는 분!",
         "onSale": true,
         "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/56c5/1c82f4a9373447e7d31dd8adf02818792d8afaffe059a62fa63e9171b692.jpg",
-        "market": true
+        "market": true,
+        "category": "Drinks"
     },
     {
         "id": 19,
@@ -152,7 +153,8 @@
         "title": "초코우유 1팩",
         "description": "초코우유 1팩 팝니다. 달콤해요.",
         "onSale": true,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTayNBNWlfV8AhvFkYIggllY7vZTKGsIti1cA&s"
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTayNBNWlfV8AhvFkYIggllY7vZTKGsIti1cA&s",
+        "category": "Drinks"
     },
     {
         "id": 20,
@@ -160,7 +162,8 @@
         "title": "바나나우유 1팩",
         "description": "바나나우유 1팩 팝니다. 신선합니다.",
         "onSale": true,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSriK4bvZmoikLu27acjiF5ahwwFvKPUUKkig&s"
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSriK4bvZmoikLu27acjiF5ahwwFvKPUUKkig&s",
+        "category": "Drinks"
     },
     {
         "id": 21,
@@ -169,7 +172,8 @@
         "description": "콘칩 1봉 팝니다. 고소한 맛!",
         "onSale": true,
         "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/e94c/1f24fc16d0e883cb3215fe6c5771aa426247bddf6a8e0d23c455274a1c48.jpg",
-        "market": true
+        "market": true,
+        "category": "Snacks"
     },
     {
         "id": 22,
@@ -178,7 +182,8 @@
         "description": "빵집 빵 1개 팝니다. 오늘 구운 빵입니다.",
         "onSale": true,
         "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/3560160461836138-263da10e-f58f-48b0-a130-0b135d0b1c5d.jpg",
-        "market": true
+        "market": true,
+        "category": "Grocery"
     },
     {
         "id": 23,
@@ -187,7 +192,8 @@
         "description": "배스킨라빈스 김맛 아이스크림.",
         "onSale": true,
         "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/12655312947412088-64bda3bf-2f37-41cd-905d-4c909c577b00.jpg",
-        "market": true
+        "market": true,
+        "category": "Ice Cream"
     },
     {
         "id": 24,
@@ -196,7 +202,8 @@
         "description": "신선한 목장 우유 1L입니다.",
         "onSale": true,
         "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/1343362878923216-460e6d04-61e9-405e-9f08-4c7e80dcdacf.png",
-        "market": true
+        "market": true,
+        "category": "Drinks"
     },
     {
         "id": 25,
@@ -205,7 +212,8 @@
         "description": "오늘 만든 신선한 두부 한 모입니다.",
         "onSale": true,
         "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/2023/03/09/18/3/c839207f-3d5f-4aad-a302-04f3b34e288c.jpg",
-        "market": true
+        "market": true,
+        "category": "Grocery"
     },
     {
         "id": 26,
@@ -214,7 +222,8 @@
         "description": "농장에서 바로 온 달걀 10개.",
         "onSale": true,
         "image": "https://thumbnail10.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/0878/27f95f6cd69fac9d9bfd8a65089a3f2cd3f8b3f6f610df126bb58d78b5a1.jpg",
-        "market": true
+        "market": true,
+        "category": "Grocery"
     },
     {
         "id": 27,
@@ -223,7 +232,8 @@
         "description": "싱싱한 바나나 1송이 팝니다.",
         "onSale": true,
         "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/8649858122128038-12a782c6-705b-4dbd-816d-d4ef6bcc62d8.jpg",
-        "market": true
+        "market": true,
+        "category": "Fruit"
     },
     {
         "id": 28,
@@ -232,7 +242,8 @@
         "description": "텃밭에서 수확한 토마토 4개.",
         "onSale": true,
         "image": "https://thumbnail10.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/712722502290473-7cd913a1-5d74-470c-aea5-e74f54190a8d.jpg",
-        "market": true
+        "market": true,
+        "category": "Fruit"
     },
     {
         "id": 29,
@@ -241,7 +252,8 @@
         "description": "오늘 캔 감자 2kg 팝니다.",
         "onSale": true,
         "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/515743752899172-0f32c471-74b9-4e09-ad7d-b42b3474a4ca.jpg",
-        "market": true
+        "market": true,
+        "category": "Grocery"
     },
     {
         "id": 30,
@@ -250,7 +262,8 @@
         "description": "아삭아삭한 오이 3개입니다.",
         "onSale": true,
         "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/6535352251288574-8117bce5-48fe-4c48-bc43-acb56556ea01.jpg",
-        "market": true
+        "market": true,
+        "category": "Grocery"
     },
     {
         "id": 31,
@@ -259,7 +272,8 @@
         "description": "신선한 상추 한 봉지 팝니다.",
         "onSale": true,
         "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/1141847089222148-c4436394-b1ad-4374-a39b-bad762329e2a.jpg",
-        "market": true
+        "market": true,
+        "category": "Grocery"
     },
     {
         "id": 32,
@@ -268,7 +282,8 @@
         "description": "밭에서 수확한 무 1개.",
         "onSale": true,
         "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/1482132093671966-acb44d46-3b28-4e28-925c-292da96e7ce1.jpg",
-        "market": true
+        "market": true,
+        "category": "Grocery"
     },
     {
         "id": 33,
@@ -277,7 +292,8 @@
         "description": "알록달록 파프리카 2개입니다.",
         "onSale": true,
         "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/13399308760286-80025ebd-bbd7-45ad-af2f-8f79d3dd18db.jpg",
-        "market": true
+        "market": true,
+        "category": "Grocery"
     },
     {
         "id": 34,
@@ -286,7 +302,8 @@
         "description": "달콤한 고구마 1kg 팝니다.",
         "onSale": true,
         "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/1304268877433-56cede61-d739-40d5-8cd8-b16319889cdc.jpg",
-        "market": true
+        "market": true,
+        "category": "Grocery"
     },
     {
         "id": 35,
@@ -295,7 +312,8 @@
         "description": "밭에서 캔 당근 4개.",
         "onSale": true,
         "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/442466391635115-149e0b46-5169-41be-8baf-0ca8a59b1551.png",
-        "market": true
+        "market": true,
+        "category": "Grocery"
     },
     {
         "id": 36,
@@ -304,7 +322,8 @@
         "description": "농장에서 수확한 양파 1망.",
         "onSale": true,
         "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/2181774229270366-bdc80c70-69ea-439e-9002-236b438ad24a.jpg",
-        "market": true
+        "market": true,
+        "category": "Grocery"
     },
     {
         "id": 37,
@@ -313,7 +332,8 @@
         "description": "싱싱한 애호박 2개 팝니다.",
         "onSale": true,
         "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/84673087358025-4393ede9-90e5-4040-933a-93dd7934ca71.jpg",
-        "market": true
+        "market": true,
+        "category": "Grocery"
     },
     {
         "id": 38,
@@ -322,6 +342,7 @@
         "description": "김장용 배추 1포기, 오늘 수확!",
         "onSale": true,
         "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/90262080714804-50167cba-bd6d-4d09-b376-df81f37c1db1.jpg",
-        "market": true
+        "market": true,
+        "category": "Grocery"
     }
 ]
