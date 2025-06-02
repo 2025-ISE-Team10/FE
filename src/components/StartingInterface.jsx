@@ -243,13 +243,13 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
                             {/* 사이드 메뉴 */}
                             <aside className="w-36 md:w-48 shrink-0 bg-white/40 backdrop-blur-sm border-r border-white/60
           rounded-xl p-4 mr-6 h-fit sticky top-24">
-                                {["Drinks", "Snacks", "Candy", "Ice Cream"].map(cat => (
+                                {["Drinks", "Snacks", "Candy", "Ice Cream", "Fruit", "Grocery"].map(cat => (
                                     <button
                                         key={cat}
                                         className="w-full flex items-center gap-2 text-left px-3 py-2 rounded-lg my-1 text-sm hover:bg-gray-100"
                                     >
                                         <span className="text-lg">
-                                            {cat === "Drinks" ? "🥤" : cat === "Snacks" ? "🍿" : cat === "Candy" ? "🍭" : "🍦"}
+                                            {cat === "Drinks" ? "🥤" : cat === "Snacks" ? "🍿" : cat === "Candy" ? "🍭" : cat === "Fruit" ? "🍎": cat === "Grocery" ? "🥚"  : "🍦"}
                                         </span>
                                         <span className="truncate">{cat}</span>
                                     </button>
