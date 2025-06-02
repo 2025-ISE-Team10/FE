@@ -6,9 +6,17 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Header from './Header';
 import products from '../data/products.json';
+import AddressPicker from './AddressPicker';
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
+  const [shippingInfo, setShippingInfo] = useState({
+    name: "",
+    phone: "",
+    address: "",
+    lat: null,
+    lng: null,
+  });
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -43,20 +51,13 @@ const CartPage = () => {
     setCartItems(items => items.filter(item => item.id !== id));
   };
 
-  const getSubtotal = () => {
-    return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-  };
+  const getSubtotal = () => cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  const getShippingFee = () => getSubtotal() > 30000 ? 0 : 3000;
+  const getTotalPrice = () => getSubtotal() + getShippingFee();
+  const formatPrice = (price) => `${price.toLocaleString()}원`;
 
-  const getShippingFee = () => {
-    return getSubtotal() > 30000 ? 0 : 3000;
-  };
-
-  const getTotalPrice = () => {
-    return getSubtotal() + getShippingFee();
-  };
-
-  const formatPrice = (price) => {
-    return `${price.toLocaleString()}원`;
+  const handleSelectLocation = (loc) => {
+    setShippingInfo((prev) => ({ ...prev, address: loc.address, lat: loc.lat, lng: loc.lng }));
   };
 
   if (cartItems.length === 0) {
@@ -98,13 +99,8 @@ const CartPage = () => {
                     <div key={item.id} className={`p-6 ${index !== cartItems.length - 1 ? 'border-b' : ''}`}>
                       <div className="flex gap-6">
                         <div className="w-24 h-24 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
-                          <img 
-                            src={item.image} 
-                            alt={item.name}
-                            className="w-full h-full object-cover"
-                          />
+                          <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                         </div>
-
                         <div className="flex-1">
                           <div className="flex justify-between items-start mb-2">
                             <div>
@@ -112,37 +108,18 @@ const CartPage = () => {
                               <p className="text-sm text-gray-500 line-clamp-2">{item.description}</p>
                               <p className="text-xs text-gray-400 mt-1">{item.category}</p>
                             </div>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="text-gray-400 hover:text-red-500"
-                              onClick={() => removeItem(item.id)}
-                            >
+                            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-red-500" onClick={() => removeItem(item.id)}>
                               <Trash2 className="w-5 h-5" />
                             </Button>
                           </div>
-
                           <div className="flex justify-between items-center">
-                            <div className="text-xl font-bold text-gray-900">
-                              {formatPrice(item.price)}
-                            </div>
-
+                            <div className="text-xl font-bold text-gray-900">{formatPrice(item.price)}</div>
                             <div className="flex items-center gap-3">
-                              <Button
-                                variant="outline"
-                                size="icon"
-                                className="w-10 h-10"
-                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                              >
+                              <Button variant="outline" size="icon" className="w-10 h-10" onClick={() => updateQuantity(item.id, item.quantity - 1)}>
                                 <Minus className="w-4 h-4" />
                               </Button>
                               <span className="w-12 text-center font-medium text-lg">{item.quantity}</span>
-                              <Button
-                                variant="outline"
-                                size="icon"
-                                className="w-10 h-10"
-                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                              >
+                              <Button variant="outline" size="icon" className="w-10 h-10" onClick={() => updateQuantity(item.id, item.quantity + 1)}>
                                 <Plus className="w-4 h-4" />
                               </Button>
                             </div>
@@ -151,6 +128,9 @@ const CartPage = () => {
                       </div>
                     </div>
                   ))}
+                </div>
+                <div className="p-6 border-t">
+                  <AddressPicker onSelect={handleSelectLocation} />
                 </div>
               </CardContent>
             </Card>
@@ -182,9 +162,7 @@ const CartPage = () => {
                 <div className="border-t pt-4">
                   <div className="flex justify-between items-center">
                     <span className="text-lg font-semibold">총 결제 금액</span>
-                    <span className="text-2xl font-bold text-blue-600">
-                      {formatPrice(getTotalPrice())}
-                    </span>
+                    <span className="text-2xl font-bold text-blue-600">{formatPrice(getTotalPrice())}</span>
                   </div>
                 </div>
               </CardContent>
@@ -196,23 +174,24 @@ const CartPage = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="name" className = "mb-2">받는 분</Label>
-                  <Input id="name" placeholder="이름을 입력하세요" />
+                  <Label htmlFor="name">받는 분</Label>
+                  <Input id="name" value={shippingInfo.name} onChange={(e) => setShippingInfo({ ...shippingInfo, name: e.target.value })} />
                 </div>
                 <div>
-                  <Label htmlFor="phone" className = "mb-2">휴대폰 번호</Label>
-                  <Input id="phone" placeholder="010-0000-0000" />
+                  <Label htmlFor="phone">휴대폰 번호</Label>
+                  <Input id="phone" value={shippingInfo.phone} onChange={(e) => setShippingInfo({ ...shippingInfo, phone: e.target.value })} />
                 </div>
-                <div>
-                  <Label htmlFor="address" className = "mb-2">배송 주소</Label>
-                  <Input id="address" placeholder="주소를 입력하세요" />
+                <div className="space-y-2">
+                  <Label>배송 주소</Label>
+                  <Input readOnly value={shippingInfo.address} placeholder="지도를 눌러 주소 선택" className="cursor-default" />
+                  {shippingInfo.lat && (
+                    <p className="text-xs text-gray-500">📍 {shippingInfo.lat.toFixed(4)}, {shippingInfo.lng.toFixed(4)}</p>
+                  )}
                 </div>
               </CardContent>
             </Card>
 
-            <Button 
-              className="w-full h-14 text-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center gap-2"
-            >
+            <Button className="w-full h-14 text-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center gap-2">
               <CreditCard className="w-5 h-5" />
               {formatPrice(getTotalPrice())} 결제하기
             </Button>
