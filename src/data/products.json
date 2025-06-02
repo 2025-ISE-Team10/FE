@@ -187,11 +187,11 @@
     },
     {
         "id": 23,
-        "price": 1600,
-        "title": "김맛 아이스크림",
-        "description": "배스킨라빈스 김맛 아이스크림.",
+        "price": 1000,
+        "title": "와 아이스크림",
+        "description": "와 아이스크림.",
         "onSale": true,
-        "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/12655312947412088-64bda3bf-2f37-41cd-905d-4c909c577b00.jpg",
+        "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/d2b4/91fe312e726c6b29f8f8518bae67f5b340103fa605e65d3e371b4d8f3f2f.jpg",
         "market": true,
         "category": "Ice Cream"
     },
