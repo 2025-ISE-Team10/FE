@@ -16,6 +16,7 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
     const [bannerIdx, setBannerIdx] = React.useState(0);
     const [progress, setProgress] = React.useState(0);
     const [fade, setFade] = React.useState(false);
+    const [marketFilter, setMarketFilter] = useState("all");
 
     useEffect(() => {
         setBgClass(view === "friends" ? "bg-gray-50" : "bg-orange-100");
@@ -95,14 +96,19 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
 
     const progressDuration = 6000; // 6초
 
-    // Geup Market tab 상품 목록
-    const filteredMarket = products.filter(p => p.market === true);
+    // Geup Market tab 상품 목록 (market === true)
+    // marketFilter가 "all"이면 모든 카테고리 상품을 보여줌
+    const filteredMarket = products.filter(p => p.market === true && (marketFilter === "all" || p.category === marketFilter));
     // Geup Friends tab 상품 목록
     const filteredFriends = products.filter(p => p.market === false || p.market === undefined);
     // 현재 페이지에 표시할 친구 상품 목록
     const currentFilteredFriends = filteredFriends.slice((page - 1) * itemsPerPage, page * itemsPerPage);
     // 빈 아이템 개수 계산 (항상 5개 div를 만들기 위함)
     const emptyCountFriend = itemsPerPage - currentFilteredFriends.length;
+
+    const handleMarketFilterChange = (filter) => {
+        setMarketFilter(filter);
+    };
 
     return (
         <div className={`min-h-screen flex flex-col ${bgClass} bg-gray-50 text-gray-800 transition-colors duration-500`}>
@@ -243,13 +249,13 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
                             {/* 사이드 메뉴 */}
                             <aside className="w-36 md:w-48 shrink-0 bg-white/40 backdrop-blur-sm border-r border-white/60
           rounded-xl p-4 mr-6 h-fit sticky top-24">
-                                {["Drinks", "Snacks", "Candy", "Ice Cream", "Fruit", "Grocery"].map(cat => (
-                                    <button
+                                {["Drink", "Snack", "Ice Cream", "Fruit", "Grocery"].map(cat => (
+                                    <button onClick={() => handleMarketFilterChange(cat)}
                                         key={cat}
                                         className="w-full flex items-center gap-2 text-left px-3 py-2 rounded-lg my-1 text-sm hover:bg-gray-100"
                                     >
                                         <span className="text-lg">
-                                            {cat === "Drinks" ? "🥤" : cat === "Snacks" ? "🍿" : cat === "Candy" ? "🍭" : cat === "Fruit" ? "🍎": cat === "Grocery" ? "🥚"  : "🍦"}
+                                            {cat === "Drink" ? "🥤" : cat === "Snack" ? "🍿" : cat === "Fruit" ? "🍎": cat === "Grocery" ? "🥚"  : "🍦"}
                                         </span>
                                         <span className="truncate">{cat}</span>
                                     </button>
