@@ -145,7 +145,7 @@
         "onSale": true,
         "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/56c5/1c82f4a9373447e7d31dd8adf02818792d8afaffe059a62fa63e9171b692.jpg",
         "market": true,
-        "category": "Drinks"
+        "category": "Drink"
     },
     {
         "id": 19,
@@ -154,7 +154,7 @@
         "description": "초코우유 1팩 팝니다. 달콤해요.",
         "onSale": true,
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTayNBNWlfV8AhvFkYIggllY7vZTKGsIti1cA&s",
-        "category": "Drinks"
+        "category": "Drink"
     },
     {
         "id": 20,
@@ -163,7 +163,7 @@
         "description": "바나나우유 1팩 팝니다. 신선합니다.",
         "onSale": true,
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSriK4bvZmoikLu27acjiF5ahwwFvKPUUKkig&s",
-        "category": "Drinks"
+        "category": "Drink"
     },
     {
         "id": 21,
@@ -173,7 +173,7 @@
         "onSale": true,
         "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/e94c/1f24fc16d0e883cb3215fe6c5771aa426247bddf6a8e0d23c455274a1c48.jpg",
         "market": true,
-        "category": "Snacks"
+        "category": "Snack"
     },
     {
         "id": 22,
@@ -203,7 +203,7 @@
         "onSale": true,
         "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/1343362878923216-460e6d04-61e9-405e-9f08-4c7e80dcdacf.png",
         "market": true,
-        "category": "Drinks"
+        "category": "Drink"
     },
     {
         "id": 25,
@@ -344,5 +344,55 @@
         "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/90262080714804-50167cba-bd6d-4d09-b376-df81f37c1db1.jpg",
         "market": true,
         "category": "Grocery"
+    },
+    {
+        "id": 39,
+        "price": 1200,
+        "title": "오징어집",
+        "description": "오징어집 과자 1봉 팝니다. 바삭한 식감!",
+        "onSale": true,
+        "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/1787936579197727-f69187fa-228d-43bc-9de3-7588e1c3d7f7.jpg",
+        "market": true,
+        "category": "Snack"
+    },
+    {
+        "id": 40,
+        "price": 1500,
+        "title": "포카칩",
+        "description": "포카칩 오리지널 1봉 팝니다.",
+        "onSale": true,
+        "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/2531637031143465-36dc5b57-7a58-4781-8a9d-8c782b512631.jpg",
+        "market": true,
+        "category": "Snack"
+    },
+    {
+        "id": 41,
+        "price": 1300,
+        "title": "새우깡",
+        "description": "새우깡 1봉 팝니다. 국민과자!",
+        "onSale": true,
+        "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/1025_amir_coupang_oct_80k/9f0a/054f8e8c839795cb2c9ae91c66c4fc01bc228f8f343b5f45a620ea73ebbc.jpg",
+        "market": true,
+        "category": "Snack"
+    },
+    {
+        "id": 42,
+        "price": 1700,
+        "title": "고래밥",
+        "description": "고래밥 1봉 팝니다. 아이들 간식으로 좋아요.",
+        "onSale": true,
+        "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/2526453695198724-f1feb09a-f17d-43eb-a0b2-4dcacfc7e17e.jpg",
+        "market": true,
+        "category": "Snack"
+    },
+    {
+        "id": 43,
+        "price": 1400,
+        "title": "자갈치",
+        "description": "자갈치 과자 1봉 팝니다. 매콤한 맛!",
+        "onSale": true,
+        "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/1025_amir_coupang_oct_80k/03ed/306285e1abfd77864e96955125b21d145c5e65f174433dc05e9fe77fb103.jpg",
+        "market": true,
+        "category": "Snack"
     }
 ]
