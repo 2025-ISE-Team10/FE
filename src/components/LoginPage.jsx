@@ -35,13 +35,24 @@ export default function LoginInterface({ setUserId, setIsLoggedIn }) {
 
     if (user) {
       // 로그인 성공 시 사용자 ID를 Context에 설정하고 홈으로 리다이렉트합니다.
+
+      localStorage.setItem("user", JSON.stringify({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        address: user.address,
+        cart: user.cart
+      }));
+      localStorage.setItem("isLoggedIn", "true");
+
+      
       setUserId(user.id); // 로그인한 사용자의 ID를 설정합니다.
       setIsLoggedIn(true); // 로그인 상태를 true로 설정합니다.
       setEmail(""); // 입력값 초기화
       setPassword(""); // 입력값 초기화
 
       toast.success(`로그인 성공! 어서오세요, ${user.name}님!`); // 성공 메시지 표시
-      navigate("/search"); // 검색으로 이동 (페이지 리로드 없이)
+      navigate("/");
     } else {
       // 로그인 실패 시 에러 메시지를 설정합니다.
       toast.error("이메일 또는 비밀번호가 올바르지 않습니다."); // 에러 메시지 표시
