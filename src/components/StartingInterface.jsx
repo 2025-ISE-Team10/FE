@@ -20,6 +20,7 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
 
     useEffect(() => {
         setBgClass(view === "friends" ? "bg-gray-50" : "bg-orange-100");
+        setMarketFilter("all"); // 마켓 뷰로 전환 시 필터 초기화
     }, [view]);
 
     React.useEffect(() => {
