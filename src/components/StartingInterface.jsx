@@ -16,13 +16,17 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
     const [bannerIdx, setBannerIdx] = React.useState(0);
     const [progress, setProgress] = React.useState(0);
     const [fade, setFade] = React.useState(false);
+    // 마켓 뷰에서 카테고리 필터링을 위한 상태
     const [marketFilter, setMarketFilter] = useState("all");
 
+    // 뷰가 friends로 변경될 때 배경색 변경
+    // 뷰가 market으로 변경될 때 배경색 변경 및 필터 초기화
     useEffect(() => {
         setBgClass(view === "friends" ? "bg-gray-50" : "bg-orange-100");
         setMarketFilter("all"); // 마켓 뷰로 전환 시 필터 초기화
     }, [view]);
 
+    // 배너 자동 변경 및 진행률 표시
     React.useEffect(() => {
         setProgress(0);
         setFade(false);
