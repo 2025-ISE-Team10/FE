@@ -183,6 +183,7 @@
         "title": "아이스크림 1개",
         "description": "아이스크림 1개 팝니다. 종류는 랜덤입니다.",
         "onSale": true,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROfXsPfOVJDNsdi05Hx_YhPfAhWt-Eg4x5qg&s"
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROfXsPfOVJDNsdi05Hx_YhPfAhWt-Eg4x5qg&s",
+        "market": true
     }
 ]
