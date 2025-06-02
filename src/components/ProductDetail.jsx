@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; // ✅ navigate 추가
 import products from '../data/products.json';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +10,7 @@ import Header from "./Header";
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate(); // ✅ 추가
   const product = products.find((p) => p.id === parseInt(id));
 
   const [quantity, setQuantity] = useState(1);
@@ -144,7 +145,11 @@ const ProductDetail = () => {
                   <Button variant="outline" className="h-12 font-medium border-2 hover:bg-gray-50 transition-all duration-300" disabled={product.status === 'out-of-stock'}>
                     바로 구매
                   </Button>
-                  <Button variant="outline" className="h-12 font-medium border-2 hover:bg-gray-50 transition-all duration-300">
+                  <Button
+                    variant="outline"
+                    className="h-12 font-medium border-2 hover:bg-gray-50 transition-all duration-300"
+                    onClick={() => navigate("/FAQ")} // ✅ 이 부분만 추가됨
+                  >
                     문의하기
                   </Button>
                 </div>
