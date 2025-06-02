@@ -136,24 +136,36 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
                 {currentProducts.map((product) => (
                     <div
                         key={product.id}
-                        className="cursor-pointer bg-white p-4 rounded-xl shadow-sm flex items-center space-x-4 hover:bg-gray-100 transition"
-                        onClick={() => navigate(`/product/${product.id}`)}
+                        className={`bg-white p-4 rounded-xl shadow-sm flex items-center space-x-4 transition ${product.onSale ? "cursor-pointer hover:bg-gray-100" : "opacity-60 cursor-not-allowed"}`}
+                        onClick={() => product.onSale && navigate(`/product/${product.id}`)}
                     >
-                        <img className="w-24 h-24 bg-gray-200 rounded-xl" src={product.image} />
+                        <img className="w-24 h-24 bg-gray-200 rounded-xl" src={product.image} alt={product.title} />
                         <div className="flex-1">
-                            <p className="text-lg font-semibold text-blue-600">{product.price}원</p>
+                            <div className="flex justify-between items-center mb-1">
+                                <p className="text-lg font-semibold text-blue-600">{product.price}원</p>
+                                <div className="flex gap-1">
+                                    {product.groupPurchase && (
+                                        <span className="px-2 py-0.5 text-xs rounded-md border border-red-400 text-red-600 font-medium bg-gray-100">공동구매</span>
+                                    )}
+                                    {product.onSale ? (
+                                        <span className="px-2 py-0.5 text-xs rounded-md bg-green-100 text-green-700 font-medium">판매중</span>
+                                    ) : (
+                                        <span className="px-2 py-0.5 text-xs rounded-md bg-red-100 text-red-700 font-medium">판매종료</span>
+                                    )}
+                                </div>
+                            </div>
                             <h2 className="font-semibold">{product.title}</h2>
                             <p className="text-sm text-gray-600">{product.description}</p>
                         </div>
                     </div>
                 ))}
-                {/* 빈 div로 채우기 - div를 5개로 맞추기 위함.*/}
+
                 {Array.from({ length: emptyCount }, (_, i) => (
                     <div key={`empty-${i}`} className="bg-gray-50 p-4 rounded-xl flex items-center space-x-4">
                         <div className="w-24 h-24 bg-gray-50 rounded-xl"></div>
                     </div>
                 ))}
-                {/* 페이지네이션 버튼 */}
+
                 <div className="flex justify-center space-x-2 mt-4">
                     <button
                         className={blueButtonStyle}
@@ -162,20 +174,22 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
                     >
                         이전 page
                     </button>
-                    {/* 현재 페이지 표시 */}
                     <span className="flex items-center justify-center text-sm font-medium">
                         {page} / {Math.ceil(products.length / itemsPerPage)}
                     </span>
                     <button
                         className={blueButtonStyle}
-                        onClick={() => setPage((prev) => (prev * itemsPerPage < products.length ? prev + 1 : prev))}
+                        onClick={() =>
+                            setPage((prev) =>
+                                prev * itemsPerPage < products.length ? prev + 1 : prev
+                            )
+                        }
                         disabled={page * itemsPerPage >= products.length}
                     >
                         다음 page
                     </button>
                 </div>
             </section>
-
         </div>
     );
 }
