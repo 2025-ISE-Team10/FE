@@ -29,7 +29,7 @@ export default function AddressPicker({ onSelect }) {
   };
 
   return (
-    <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_KEY}>
+    
       <div>
         <GoogleMap
           mapContainerStyle={containerStyle}
@@ -54,6 +54,5 @@ export default function AddressPicker({ onSelect }) {
           </button>
         </div>
       </div>
-    </LoadScript>
   );
 }
