@@ -394,5 +394,65 @@
         "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/1025_amir_coupang_oct_80k/03ed/306285e1abfd77864e96955125b21d145c5e65f174433dc05e9fe77fb103.jpg",
         "market": true,
         "category": "Snack"
+    },
+    {
+        "id": 44,
+        "price": 1500,
+        "title": "나뚜루 딸기 아이스크림",
+        "description": "상큼한 딸기맛 나뚜루 아이스크림.",
+        "onSale": true,
+        "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/1025_amir_coupang_oct_80k/72be/b7c5ec2842c17e33557a1998f680767e6cdb16090011f7b32bf30b0dfb4d.jpg",
+        "market": true,
+        "category": "Ice Cream"
+    },
+    {
+        "id": 45,
+        "price": 1700,
+        "title": "월드콘 초코",
+        "description": "롯데 월드콘 진한 초콜릿맛 아이스크림.",
+        "onSale": true,
+        "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/1913855623225662-5309fce3-27aa-4f30-ad2b-efeaeee4a28a.jpg",
+        "market": true,
+        "category": "Ice Cream"
+    },
+    {
+        "id": 46,
+        "price": 1600,
+        "title": "투게더 바닐라",
+        "description": "빙그레 투게더 바닐라 아이스크림.",
+        "onSale": true,
+        "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/180666710163374-fbf33a82-fb50-4b35-9c4a-d86d4f744f18.jpg",
+        "market": true,
+        "category": "Ice Cream"
+    },
+    {
+        "id": 47,
+        "price": 1800,
+        "title": "녹차마루",
+        "description": "해태 녹차마루 아이스크림.",
+        "onSale": true,
+        "image": "https://thumbnail10.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/fc19/aa4f4a803ce7c2cff7a5c85a1a69f0597fe57a426310d4d02766806f4622.png",
+        "market": true,
+        "category": "Ice Cream"
+    },
+    {
+        "id": 48,
+        "price": 2000,
+        "title": "나뚜루 쿠키앤크림",
+        "description": "쿠키가 씹히는 나뚜루 쿠키앤크림 아이스크림.",
+        "onSale": true,
+        "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/12655312947412088-64bda3bf-2f37-41cd-905d-4c909c577b00.jpg",
+        "market": true,
+        "category": "Ice Cream"
+    },
+    {
+        "id": 49,
+        "price": 1900,
+        "title": "롯데 수박바",
+        "description": "여름철 인기 롯데 수박맛 아이스크림.",
+        "onSale": true,
+        "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/a0fb/25702f55d28684cff5d5dacfc66734154a00fefb400a42fd390bae211182.jpg",
+        "market": true,
+        "category": "Ice Cream"
     }
 ]
