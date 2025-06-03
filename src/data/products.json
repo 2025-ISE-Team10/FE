@@ -143,7 +143,9 @@
         "title": "사이다 250ml",
         "description": "사이다 250ml 팝니다. 탄산 좋아하시는 분!",
         "onSale": true,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWra7nNJEsw_w1YGnZ-mrvMSFIpBpJm_4akg&s"
+        "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/56c5/1c82f4a9373447e7d31dd8adf02818792d8afaffe059a62fa63e9171b692.jpg",
+        "market": true,
+        "category": "Drink"
     },
     {
         "id": 19,
@@ -151,7 +153,8 @@
         "title": "초코우유 1팩",
         "description": "초코우유 1팩 팝니다. 달콤해요.",
         "onSale": true,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTayNBNWlfV8AhvFkYIggllY7vZTKGsIti1cA&s"
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTayNBNWlfV8AhvFkYIggllY7vZTKGsIti1cA&s",
+        "category": "Drink"
     },
     {
         "id": 20,
@@ -159,31 +162,297 @@
         "title": "바나나우유 1팩",
         "description": "바나나우유 1팩 팝니다. 신선합니다.",
         "onSale": true,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSriK4bvZmoikLu27acjiF5ahwwFvKPUUKkig&s"
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSriK4bvZmoikLu27acjiF5ahwwFvKPUUKkig&s",
+        "category": "Drink"
     },
     {
         "id": 21,
         "price": 1400,
-        "title": "콘칩 1봉",
+        "title": "콘칩",
         "description": "콘칩 1봉 팝니다. 고소한 맛!",
         "onSale": true,
-        "image": "data:image/jpeg;base64,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"
+        "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/e94c/1f24fc16d0e883cb3215fe6c5771aa426247bddf6a8e0d23c455274a1c48.jpg",
+        "market": true,
+        "category": "Snack"
     },
     {
         "id": 22,
         "price": 2000,
-        "title": "빵 1개",
-        "description": "동네 빵집 빵 1개 팝니다. 오늘 구운 빵입니다.",
+        "title": "식빵",
+        "description": "빵집 빵 1개 팝니다. 오늘 구운 빵입니다.",
         "onSale": true,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC-2Wr2iVfyBGZvwdh54T5Eq0bznT_RQX5kw&s"
+        "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/3560160461836138-263da10e-f58f-48b0-a130-0b135d0b1c5d.jpg",
+        "market": true,
+        "category": "Grocery"
     },
     {
         "id": 23,
-        "price": 1600,
-        "title": "아이스크림 1개",
-        "description": "아이스크림 1개 팝니다. 종류는 랜덤입니다.",
+        "price": 1000,
+        "title": "와 아이스크림",
+        "description": "와 아이스크림.",
         "onSale": true,
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROfXsPfOVJDNsdi05Hx_YhPfAhWt-Eg4x5qg&s",
-        "market": true
+        "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/d2b4/91fe312e726c6b29f8f8518bae67f5b340103fa605e65d3e371b4d8f3f2f.jpg",
+        "market": true,
+        "category": "Ice Cream"
+    },
+    {
+        "id": 24,
+        "price": 2500,
+        "title": "우유 1L",
+        "description": "신선한 목장 우유 1L입니다.",
+        "onSale": true,
+        "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/1343362878923216-460e6d04-61e9-405e-9f08-4c7e80dcdacf.png",
+        "market": true,
+        "category": "Drink"
+    },
+    {
+        "id": 25,
+        "price": 1800,
+        "title": "두부",
+        "description": "오늘 만든 신선한 두부 한 모입니다.",
+        "onSale": true,
+        "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/2023/03/09/18/3/c839207f-3d5f-4aad-a302-04f3b34e288c.jpg",
+        "market": true,
+        "category": "Grocery"
+    },
+    {
+        "id": 26,
+        "price": 3200,
+        "title": "달걀 10구",
+        "description": "농장에서 바로 온 달걀 10개.",
+        "onSale": true,
+        "image": "https://thumbnail10.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/0878/27f95f6cd69fac9d9bfd8a65089a3f2cd3f8b3f6f610df126bb58d78b5a1.jpg",
+        "market": true,
+        "category": "Grocery"
+    },
+    {
+        "id": 27,
+        "price": 1200,
+        "title": "바나나",
+        "description": "싱싱한 바나나 1송이 팝니다.",
+        "onSale": true,
+        "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/8649858122128038-12a782c6-705b-4dbd-816d-d4ef6bcc62d8.jpg",
+        "market": true,
+        "category": "Fruit"
+    },
+    {
+        "id": 28,
+        "price": 2100,
+        "title": "토마토",
+        "description": "텃밭에서 수확한 토마토 4개.",
+        "onSale": true,
+        "image": "https://thumbnail10.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/712722502290473-7cd913a1-5d74-470c-aea5-e74f54190a8d.jpg",
+        "market": true,
+        "category": "Fruit"
+    },
+    {
+        "id": 29,
+        "price": 3500,
+        "title": "감자",
+        "description": "오늘 캔 감자 2kg 팝니다.",
+        "onSale": true,
+        "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/515743752899172-0f32c471-74b9-4e09-ad7d-b42b3474a4ca.jpg",
+        "market": true,
+        "category": "Grocery"
+    },
+    {
+        "id": 30,
+        "price": 1700,
+        "title": "오이",
+        "description": "아삭아삭한 오이 3개입니다.",
+        "onSale": true,
+        "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/6535352251288574-8117bce5-48fe-4c48-bc43-acb56556ea01.jpg",
+        "market": true,
+        "category": "Grocery"
+    },
+    {
+        "id": 31,
+        "price": 2000,
+        "title": "상추 한 봉지",
+        "description": "신선한 상추 한 봉지 팝니다.",
+        "onSale": true,
+        "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/1141847089222148-c4436394-b1ad-4374-a39b-bad762329e2a.jpg",
+        "market": true,
+        "category": "Grocery"
+    },
+    {
+        "id": 32,
+        "price": 1500,
+        "title": "무",
+        "description": "밭에서 수확한 무 1개.",
+        "onSale": true,
+        "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/1482132093671966-acb44d46-3b28-4e28-925c-292da96e7ce1.jpg",
+        "market": true,
+        "category": "Grocery"
+    },
+    {
+        "id": 33,
+        "price": 2300,
+        "title": "파프리카",
+        "description": "알록달록 파프리카 2개입니다.",
+        "onSale": true,
+        "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/13399308760286-80025ebd-bbd7-45ad-af2f-8f79d3dd18db.jpg",
+        "market": true,
+        "category": "Grocery"
+    },
+    {
+        "id": 34,
+        "price": 2700,
+        "title": "고구마",
+        "description": "달콤한 고구마 1kg 팝니다.",
+        "onSale": true,
+        "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/1304268877433-56cede61-d739-40d5-8cd8-b16319889cdc.jpg",
+        "market": true,
+        "category": "Grocery"
+    },
+    {
+        "id": 35,
+        "price": 1900,
+        "title": "당근",
+        "description": "밭에서 캔 당근 4개.",
+        "onSale": true,
+        "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/442466391635115-149e0b46-5169-41be-8baf-0ca8a59b1551.png",
+        "market": true,
+        "category": "Grocery"
+    },
+    {
+        "id": 36,
+        "price": 2200,
+        "title": "양파",
+        "description": "농장에서 수확한 양파 1망.",
+        "onSale": true,
+        "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/2181774229270366-bdc80c70-69ea-439e-9002-236b438ad24a.jpg",
+        "market": true,
+        "category": "Grocery"
+    },
+    {
+        "id": 37,
+        "price": 2600,
+        "title": "애호박",
+        "description": "싱싱한 애호박 2개 팝니다.",
+        "onSale": true,
+        "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/84673087358025-4393ede9-90e5-4040-933a-93dd7934ca71.jpg",
+        "market": true,
+        "category": "Grocery"
+    },
+    {
+        "id": 38,
+        "price": 3000,
+        "title": "배추",
+        "description": "김장용 배추 1포기, 오늘 수확!",
+        "onSale": true,
+        "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/90262080714804-50167cba-bd6d-4d09-b376-df81f37c1db1.jpg",
+        "market": true,
+        "category": "Grocery"
+    },
+    {
+        "id": 39,
+        "price": 1200,
+        "title": "오징어집",
+        "description": "오징어집 과자 1봉 팝니다. 바삭한 식감!",
+        "onSale": true,
+        "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/1787936579197727-f69187fa-228d-43bc-9de3-7588e1c3d7f7.jpg",
+        "market": true,
+        "category": "Snack"
+    },
+    {
+        "id": 40,
+        "price": 1500,
+        "title": "포카칩",
+        "description": "포카칩 오리지널 1봉 팝니다.",
+        "onSale": true,
+        "image": "https://thumbnail8.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/2531637031143465-36dc5b57-7a58-4781-8a9d-8c782b512631.jpg",
+        "market": true,
+        "category": "Snack"
+    },
+    {
+        "id": 41,
+        "price": 1300,
+        "title": "새우깡",
+        "description": "새우깡 1봉 팝니다. 국민과자!",
+        "onSale": true,
+        "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/1025_amir_coupang_oct_80k/9f0a/054f8e8c839795cb2c9ae91c66c4fc01bc228f8f343b5f45a620ea73ebbc.jpg",
+        "market": true,
+        "category": "Snack"
+    },
+    {
+        "id": 42,
+        "price": 1700,
+        "title": "고래밥",
+        "description": "고래밥 1봉 팝니다. 아이들 간식으로 좋아요.",
+        "onSale": true,
+        "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/2526453695198724-f1feb09a-f17d-43eb-a0b2-4dcacfc7e17e.jpg",
+        "market": true,
+        "category": "Snack"
+    },
+    {
+        "id": 43,
+        "price": 1400,
+        "title": "자갈치",
+        "description": "자갈치 과자 1봉 팝니다. 매콤한 맛!",
+        "onSale": true,
+        "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/1025_amir_coupang_oct_80k/03ed/306285e1abfd77864e96955125b21d145c5e65f174433dc05e9fe77fb103.jpg",
+        "market": true,
+        "category": "Snack"
+    },
+    {
+        "id": 44,
+        "price": 1500,
+        "title": "나뚜루 딸기 아이스크림",
+        "description": "상큼한 딸기맛 나뚜루 아이스크림.",
+        "onSale": true,
+        "image": "https://thumbnail9.coupangcdn.com/thumbnails/remote/320x320ex/image/1025_amir_coupang_oct_80k/72be/b7c5ec2842c17e33557a1998f680767e6cdb16090011f7b32bf30b0dfb4d.jpg",
+        "market": true,
+        "category": "Ice Cream"
+    },
+    {
+        "id": 45,
+        "price": 1700,
+        "title": "월드콘 초코",
+        "description": "롯데 월드콘 진한 초콜릿맛 아이스크림.",
+        "onSale": true,
+        "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/1913855623225662-5309fce3-27aa-4f30-ad2b-efeaeee4a28a.jpg",
+        "market": true,
+        "category": "Ice Cream"
+    },
+    {
+        "id": 46,
+        "price": 1600,
+        "title": "투게더 바닐라",
+        "description": "빙그레 투게더 바닐라 아이스크림.",
+        "onSale": true,
+        "image": "https://thumbnail6.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/180666710163374-fbf33a82-fb50-4b35-9c4a-d86d4f744f18.jpg",
+        "market": true,
+        "category": "Ice Cream"
+    },
+    {
+        "id": 47,
+        "price": 1800,
+        "title": "녹차마루",
+        "description": "해태 녹차마루 아이스크림.",
+        "onSale": true,
+        "image": "https://thumbnail10.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/fc19/aa4f4a803ce7c2cff7a5c85a1a69f0597fe57a426310d4d02766806f4622.png",
+        "market": true,
+        "category": "Ice Cream"
+    },
+    {
+        "id": 48,
+        "price": 2000,
+        "title": "나뚜루 쿠키앤크림",
+        "description": "쿠키가 씹히는 나뚜루 쿠키앤크림 아이스크림.",
+        "onSale": true,
+        "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/retail/images/12655312947412088-64bda3bf-2f37-41cd-905d-4c909c577b00.jpg",
+        "market": true,
+        "category": "Ice Cream"
+    },
+    {
+        "id": 49,
+        "price": 1900,
+        "title": "롯데 수박바",
+        "description": "여름철 인기 롯데 수박맛 아이스크림.",
+        "onSale": true,
+        "image": "https://thumbnail7.coupangcdn.com/thumbnails/remote/320x320ex/image/vendor_inventory/a0fb/25702f55d28684cff5d5dacfc66734154a00fefb400a42fd390bae211182.jpg",
+        "market": true,
+        "category": "Ice Cream"
     }
 ]

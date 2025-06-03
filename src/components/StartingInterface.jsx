@@ -13,18 +13,41 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
     const navigate = useNavigate();
     const [view, setView] = useState("friends"); // "friends" | "market"
     const [bgClass, setBgClass] = useState("bg-gray-50");
+    const [bannerIdx, setBannerIdx] = React.useState(0);
+    const [progress, setProgress] = React.useState(0);
+    const [fade, setFade] = React.useState(false);
+    // 마켓 뷰에서 카테고리 필터링을 위한 상태
+    const [marketFilter, setMarketFilter] = useState("all");
 
+    // 뷰가 friends로 변경될 때 배경색 변경
+    // 뷰가 market으로 변경될 때 배경색 변경 및 필터 초기화
     useEffect(() => {
         setBgClass(view === "friends" ? "bg-gray-50" : "bg-orange-100");
+        setMarketFilter("all"); // 마켓 뷰로 전환 시 필터 초기화
     }, [view]);
+
+    // 배너 자동 변경 및 진행률 표시
+    React.useEffect(() => {
+        setProgress(0);
+        setFade(false);
+        const start = Date.now();
+        const interval = setInterval(() => {
+            const elapsed = Date.now() - start;
+            const percent = Math.min((elapsed / progressDuration) * 100, 100);
+            setProgress(percent);
+            if (percent >= 100) {
+                clearInterval(interval);
+                setFade(true);
+                setTimeout(() => {
+                    setBannerIdx((prev) => (prev + 1) % banners.length);
+                }, 400); // fade-out 후 배너 변경
+            }
+        }, 30);
+        return () => clearInterval(interval);
+    }, [bannerIdx]);
 
     // 페이지당 상품 수
     const itemsPerPage = 5;
-
-    // 현재 페이지에 표시할 상품 목록
-    const currentProducts = products.slice((page - 1) * itemsPerPage, page * itemsPerPage);
-    // 빈 아이템 개수 계산 (항상 5개 div를 만들기 위함)
-    const emptyCount = itemsPerPage - currentProducts.length;
 
     // 카테고리 아이콘
     const categoryIcons = {
@@ -75,33 +98,22 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
             bg: "bg-gradient-to-r from-blue-300 via-cyan-200 to-blue-100"
         }
     ];
-    const [bannerIdx, setBannerIdx] = React.useState(0);
-    const [progress, setProgress] = React.useState(0);
-    const [fade, setFade] = React.useState(false);
+
     const progressDuration = 6000; // 6초
 
-    React.useEffect(() => {
-        setProgress(0);
-        setFade(false);
-        const start = Date.now();
-        const interval = setInterval(() => {
-            const elapsed = Date.now() - start;
-            const percent = Math.min((elapsed / progressDuration) * 100, 100);
-            setProgress(percent);
-            if (percent >= 100) {
-                clearInterval(interval);
-                setFade(true);
-                setTimeout(() => {
-                    setBannerIdx((prev) => (prev + 1) % banners.length);
-                }, 400); // fade-out 후 배너 변경
-            }
-        }, 30);
-        return () => clearInterval(interval);
-    }, [bannerIdx]);
+    // Geup Market tab 상품 목록 (market === true)
+    // marketFilter가 "all"이면 모든 카테고리 상품을 보여줌
+    const filteredMarket = products.filter(p => p.market === true && (marketFilter === "all" || p.category === marketFilter));
+    // Geup Friends tab 상품 목록
+    const filteredFriends = products.filter(p => p.market === false || p.market === undefined);
+    // 현재 페이지에 표시할 친구 상품 목록
+    const currentFilteredFriends = filteredFriends.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+    // 빈 아이템 개수 계산 (항상 5개 div를 만들기 위함)
+    const emptyCountFriend = itemsPerPage - currentFilteredFriends.length;
 
-    // Geup Market
-
-    const filteredMarket = products.filter(p => p.market === true);
+    const handleMarketFilterChange = (filter) => {
+        setMarketFilter(filter);
+    };
 
     return (
         <div className={`min-h-screen flex flex-col ${bgClass} bg-gray-50 text-gray-800 transition-colors duration-500`}>
@@ -155,7 +167,7 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
 
                 {view === "friends" ? (
                     <>
-                        {currentProducts.map((product) => (
+                        {currentFilteredFriends.map((product) => (
                             <div
                                 key={product.id}
                                 className={`bg-white p-4 rounded-xl shadow-sm flex items-center space-x-4 transition ${product.onSale
@@ -202,7 +214,7 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
                         ))}
 
                         {/* 빈 카드 채우기 */}
-                        {Array.from({ length: emptyCount }, (_, i) => (
+                        {Array.from({ length: emptyCountFriend }, (_, i) => (
                             <div
                                 key={`empty-${i}`}
                                 className="bg-gray-50 p-4 rounded-xl flex items-center space-x-4"
@@ -221,16 +233,16 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
                                 이전
                             </button>
                             <span className="text-sm font-medium flex items-center">
-                                {page} / {Math.ceil(products.length / itemsPerPage)}
+                                {page} / {Math.ceil(filteredFriends.length / itemsPerPage)}
                             </span>
                             <button
                                 className={blueButtonStyle}
                                 onClick={() =>
                                     setPage((prev) =>
-                                        prev * itemsPerPage < products.length ? prev + 1 : prev
+                                        prev * itemsPerPage < filteredFriends.length ? prev + 1 : prev
                                     )
                                 }
-                                disabled={page * itemsPerPage >= products.length}
+                                disabled={page * itemsPerPage >= filteredFriends.length}
                             >
                                 다음
                             </button>
@@ -242,13 +254,13 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
                             {/* 사이드 메뉴 */}
                             <aside className="w-36 md:w-48 shrink-0 bg-white/40 backdrop-blur-sm border-r border-white/60
           rounded-xl p-4 mr-6 h-fit sticky top-24">
-                                {["Drinks", "Snacks", "Candy", "Ice Cream"].map(cat => (
-                                    <button
+                                {["Drink", "Snack", "Ice Cream", "Fruit", "Grocery"].map(cat => (
+                                    <button onClick={() => handleMarketFilterChange(cat)}
                                         key={cat}
-                                        className="w-full flex items-center gap-2 text-left px-3 py-2 rounded-lg my-1 text-sm hover:bg-gray-100"
+                                        className={"w-full flex items-center gap-2 text-left px-3 py-2 rounded-lg my-1 text-sm hover:bg-gray-100 " + (marketFilter === cat ? "bg-white font-semibold" : "text-gray-700")}
                                     >
                                         <span className="text-lg">
-                                            {cat === "Drinks" ? "🥤" : cat === "Snacks" ? "🍿" : cat === "Candy" ? "🍭" : "🍦"}
+                                            {cat === "Drink" ? "🥤" : cat === "Snack" ? "🍿" : cat === "Fruit" ? "🍎": cat === "Grocery" ? "🥚"  : "🍦"}
                                         </span>
                                         <span className="truncate">{cat}</span>
                                     </button>
@@ -261,7 +273,7 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
                                     {filteredMarket.map(p => (
                                         <div
                                             key={p.id}
-                                            className="w-full border border-gray-300 rounded-xl p-4 cursor-pointer hover:shadow-md transition-shadow duration-200"
+                                            className="bg-white w-full border border-gray-300 rounded-xl p-4 cursor-pointer hover:shadow-md transition-shadow duration-200"
                                             onClick={() => navigate(`/product/${p.id}`)}
                                         >
                                             <img
@@ -271,7 +283,7 @@ export default function StartingInterface({ userId, setUserId, isLoggedIn, setIs
                                             />
                                             <p className="font-bold text-lg">₩{p.price.toLocaleString()}</p>
                                             <h3 className="text-sm font-semibold leading-snug truncate">{p.title}</h3>
-                                            <p className="text-xs text-gray-500 truncate">{p.description}</p>
+                                            {/* <p className="text-xs text-gray-500 truncate">{p.description}</p> */}
                                         </div>
                                     ))}
                                 </div>
