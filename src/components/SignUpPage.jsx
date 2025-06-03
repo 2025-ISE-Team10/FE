@@ -10,6 +10,7 @@ export default function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [userType, setUserType] = useState("customer");
   const [address, setAddress] = useState("");
   const [name, setName] = useState("");
   const [storedUsers, setStoredUsers] = useState(() => {
@@ -43,13 +44,15 @@ export default function SignUpPage() {
 
       // 회원가입 처리 로직 (예: 서버에 사용자 정보 저장)
       const newUser = {
-        'email': email,
-        'password' : password,
-        'address' : address,
-        'id': storedUsers.length + 1, // 임시로 ID 생성 (실제 서버에서는 자동 생성)
-        'name': name,
-        'cart': [], // 장바구니 초기화
+        email,
+        password,
+        address,
+        id: storedUsers.length + 1,
+        name,
+        cart: [],
+        userType, // ← 추가
       };
+
 
       // users.push(newUser); // 실제로는 서버에 저장해야 함
       // 로컬 스토리지에 사용자 데이터 저장
@@ -67,13 +70,13 @@ export default function SignUpPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       {/* 로그인 화면으로 이동 버튼 */}
       <button
-          onClick={() => (navigate("/login"))}
-          className="absolute left-4 top-4 text-gray-500 hover:text-gray-700"
-          aria-label="홈으로 이동"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-12 text-gray-500 hover:text-gray-700">
-            <path fillRule="evenodd" d="M11.03 3.97a.75.75 0 0 1 0 1.06l-6.22 6.22H21a.75.75 0 0 1 0 1.5H4.81l6.22 6.22a.75.75 0 1 1-1.06 1.06l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 0 1 1.06 0Z" clipRule="evenodd" />
-          </svg>
+        onClick={() => (navigate("/login"))}
+        className="absolute left-4 top-4 text-gray-500 hover:text-gray-700"
+        aria-label="홈으로 이동"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-12 text-gray-500 hover:text-gray-700">
+          <path fillRule="evenodd" d="M11.03 3.97a.75.75 0 0 1 0 1.06l-6.22 6.22H21a.75.75 0 0 1 0 1.5H4.81l6.22 6.22a.75.75 0 1 1-1.06 1.06l-7.5-7.5a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 0 1 1.06 0Z" clipRule="evenodd" />
+        </svg>
       </button>
       <div className="w-full max-w-sm bg-white rounded-2xl shadow-lg p-6 relative">
         {/* 회원가입 폼 컨테이너 */}
@@ -117,6 +120,31 @@ export default function SignUpPage() {
             onChange={(e) => setAddress(e.target.value)}
             className="w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+                    <div className="space-y-2">
+            <label className="block font-medium text-sm">사용자 유형</label>
+            <div className="flex gap-4">
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="userType"
+                  value="customer"
+                  checked={userType === "customer"}
+                  onChange={(e) => setUserType(e.target.value)}
+                />
+                일반 사용자
+              </label>
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="userType"
+                  value="courier"
+                  checked={userType === "courier"}
+                  onChange={(e) => setUserType(e.target.value)}
+                />
+                배송원
+              </label>
+            </div>
+          </div>
           <button
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-xl"
@@ -130,7 +158,7 @@ export default function SignUpPage() {
             로그인하러 가기
           </a>
         </div>
-        </div>
-        </div>
-    );
+      </div>
+    </div>
+  );
 }

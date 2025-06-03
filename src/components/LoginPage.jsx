@@ -34,35 +34,37 @@ export default function LoginInterface({ setUserId, setIsLoggedIn }) {
     );
 
     if (user) {
-      // 로그인 성공 시 사용자 ID를 Context에 설정하고 홈으로 리다이렉트합니다.
-
+      // 로그인 성공 시 localStorage 저장
       localStorage.setItem("user", JSON.stringify({
         id: user.id,
         name: user.name,
         email: user.email,
         address: user.address,
-        cart: user.cart
+        cart: user.cart,
+        userType: user.userType // ✅ 유저 타입도 함께 저장
       }));
       localStorage.setItem("isLoggedIn", "true");
 
-      
-      setUserId(user.id); // 로그인한 사용자의 ID를 설정합니다.
-      setIsLoggedIn(true); // 로그인 상태를 true로 설정합니다.
-      setEmail(""); // 입력값 초기화
-      setPassword(""); // 입력값 초기화
+      setUserId(user.id);
+      setIsLoggedIn(true);
+      setEmail("");
+      setPassword("");
 
-      toast.success(`로그인 성공! 어서오세요, ${user.name}님!`); // 성공 메시지 표시
-      navigate("/");
+      toast.success(`로그인 성공! 어서오세요, ${user.name}님!`);
+
+      // ✅ 배송원이면 /deliver, 아니면 / 로 라우팅
+      if (user.userType === "courier") {
+        navigate("/delivery");
+      } else {
+        navigate("/");
+      }
     } else {
-      // 로그인 실패 시 에러 메시지를 설정합니다.
-      toast.error("이메일 또는 비밀번호가 올바르지 않습니다."); // 에러 메시지 표시
-      setTimeout(() => {
-        setError("");
-      }, 1500); // 1.5초 후 에러 메시지 초기화
-
-      setPassword(""); // 입력값 초기화
-      passwordRef.current.focus(); // 비밀번호 입력 필드에 포커스 설정
+      toast.error("이메일 또는 비밀번호가 올바르지 않습니다.");
+      setTimeout(() => setError(""), 1500);
+      setPassword("");
+      passwordRef.current.focus();
     }
+
     setLoading(false); // 로딩 상태 종료
   };
 
