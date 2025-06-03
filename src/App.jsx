@@ -10,6 +10,8 @@ import SearchPage from "./components/SearchPage";
 import ProductDetail from "./components/ProductDetail";
 import CartPage from "./components/CartPage";
 import FAQPage from './components/FAQPage';
+import DeliveryDashboard from "./components/DeliveryDashboard";
+import ThankyouPage from "./components/ThankyouPage";
 
 function App() {
   // App 컴포넌트는 전체 애플리케이션의 루트 컴포넌트입니다.
@@ -61,6 +63,8 @@ function App() {
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/FAQ" element={<FAQPage />} />
+          <Route path="/delivery" element = {<DeliveryDashboard />} />
+          <Route path="/thankyou" element = {<ThankyouPage />} />
         </Routes>
       </BrowserRouter>
       <footer className="mt-auto px-4 py-6 text-sm text-center text-gray-500 bg-white border-t">
