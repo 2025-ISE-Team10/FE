@@ -99,7 +99,7 @@ export default function MyPage() {
                   </div>
                   <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <span className="text-sm text-gray-600">가입일</span>
-                    <span className="font-medium text-gray-800">2024.01.01</span>
+                    <span className="font-medium text-gray-800">2025.06.04</span>
                   </div>
                 </div>
               </CardContent>

@@ -4,19 +4,51 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import products from '../data/products.json';
 import AddressPicker from './AddressPicker';
 
 const CartPage = () => {
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [shippingInfo, setShippingInfo] = useState({
     name: "",
     phone: "",
     address: "",
+    detail: "",
     lat: null,
     lng: null,
   });
+
+  const handleCheckout = () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      alert("로그인이 필요합니다.");
+      return;
+    }
+
+    const newOrder = {
+      user: {
+        id: user.id || "unknown",
+        name: shippingInfo.name,
+        phone: shippingInfo.phone,
+      },
+      address: shippingInfo.address,
+      location: {
+        lat: shippingInfo.lat,
+        lng: shippingInfo.lng,
+      },
+      items: cartItems,
+      total: getTotalPrice(),
+      timestamp: new Date().toISOString()
+    };
+
+    const storedOrders = JSON.parse(localStorage.getItem("orders")) || [];
+    localStorage.setItem("orders", JSON.stringify([...storedOrders, newOrder]));
+
+    navigate('/thankyou');
+  };
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -173,17 +205,22 @@ const CartPage = () => {
                 <CardTitle className="text-lg">배송 정보</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div>
+                <div className="space-y-2">
                   <Label htmlFor="name">받는 분</Label>
                   <Input id="name" value={shippingInfo.name} onChange={(e) => setShippingInfo({ ...shippingInfo, name: e.target.value })} />
                 </div>
-                <div>
+                <div className="space-y-2">
                   <Label htmlFor="phone">휴대폰 번호</Label>
                   <Input id="phone" value={shippingInfo.phone} onChange={(e) => setShippingInfo({ ...shippingInfo, phone: e.target.value })} />
                 </div>
                 <div className="space-y-2">
                   <Label>배송 주소</Label>
                   <Input readOnly value={shippingInfo.address} placeholder="지도를 눌러 주소 선택" className="cursor-default" />
+                  <Input
+                    value={shippingInfo.detail}
+                    placeholder="상세 주소 (예: 101동 202호)"
+                    onChange={(e) => setShippingInfo({ ...shippingInfo, detail: e.target.value })}
+                  />
                   {shippingInfo.lat && (
                     <p className="text-xs text-gray-500">📍 {shippingInfo.lat.toFixed(4)}, {shippingInfo.lng.toFixed(4)}</p>
                   )}
@@ -191,7 +228,10 @@ const CartPage = () => {
               </CardContent>
             </Card>
 
-            <Button className="w-full h-14 text-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center gap-2">
+            <Button
+              className="w-full h-14 text-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center gap-2"
+              onClick={handleCheckout}
+            >
               <CreditCard className="w-5 h-5" />
               {formatPrice(getTotalPrice())} 결제하기
             </Button>
